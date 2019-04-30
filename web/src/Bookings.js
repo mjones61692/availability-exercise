@@ -17,8 +17,8 @@ function Bookings(props) {
               let date = new Date(booking[2]);
               return (
                 <tr key={index}>
-                  <td>{booking[0]}</td>
-                  <td>{booking[1]}</td>
+                  <td className="booking-advisor-id">{booking[0]}</td>
+                  <td className="booking-student-name">{booking[1]}</td>
                   <td>
                     <time dateTime={booking[2]}>{date.toLocaleDateString()} {date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</time>
                   </td>

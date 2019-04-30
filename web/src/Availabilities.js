@@ -14,7 +14,7 @@ function Availabilities(props) {
           <tbody>
             {props.ids.map((id, index1) => (
               <tr key={id}>
-                <td>{id}</td>
+                <td className="availability-id">{id}</td>
                 <td>
                   <ul className="list-unstyled">
                   {props.times[index1].map((time, index2) => {
