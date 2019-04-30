@@ -23,15 +23,17 @@ app.get("/availability", (req, res) => {
         })
         .catch((err) => {
             console.error(err);
+            res.status(500).send({error: err});
         });
 });
 
-app.get("/booking", (req, res) => {
+app.get("/bookings", (req, res) => {
     res.send(booking);
 });
 
-app.post("/booking", (req, res) => {
+app.post("/bookings", (req, res) => {
     booking.push(req.body.booking);
+    res.send();
 });
 
 app.today = helper.today;

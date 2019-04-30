@@ -29,7 +29,7 @@ class App extends Component {
       alert('Please enter your name before booking.');
     } else {
       let booking = [id, this.state.name, time];
-      axios.post("http://localhost:4433/booking", {booking: booking});
+      axios.post("http://localhost:4433/bookings", {booking: booking});
       let availabilities = this.state.availabilityTimes;
       availabilities[index1].splice(index2, 1);
       let bookings = this.state.bookings;
@@ -52,7 +52,7 @@ class App extends Component {
         console.error("Failed to fetch 'availabilities' data", err);
       });
 
-    let bookingsPromise = axios.get("http://localhost:4433/booking")
+    let bookingsPromise = axios.get("http://localhost:4433/bookings")
       .catch((err) => {
         console.error("Failed to fetch 'bookings' data", err);
       });
@@ -74,9 +74,18 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
-        <BookTime today={this.state.today} onNameChange={this.onNameChange}/>
-        <Availabilities ids={this.state.availabilityIds} times={this.state.availabilityTimes} bookTime={this.bookTime}/>
-        <Bookings bookings={this.state.bookings}/>
+        <BookTime 
+          today={this.state.today} 
+          onNameChange={this.onNameChange}
+        />
+        <Availabilities 
+          ids={this.state.availabilityIds} 
+          times={this.state.availabilityTimes} 
+          bookTime={this.bookTime}
+        />
+        <Bookings 
+          bookings={this.state.bookings}
+        />
       </div>
     );
   }
