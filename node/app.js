@@ -36,5 +36,4 @@ app.post("/bookings", (req, res) => {
     res.send();
 });
 
-app.today = helper.today;
 module.exports = app;
