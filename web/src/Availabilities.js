@@ -12,18 +12,20 @@ function Availabilities(props) {
             </tr>
           </thead>
           <tbody>
-            {props.ids.map((id, index) => (
+            {props.ids.map((id, index1) => (
               <tr key={id}>
                 <td>{id}</td>
                 <td>
                   <ul className="list-unstyled">
-                  {props.times[index].map((time, index) => {
+                  {props.times[index1].map((time, index2) => {
                     let date = new Date(time);
-                    console.log(date);
                     return (
-                      <li key={index}>
+                      <li key={index2}>
                         <time dateTime={time} className="book-time">{date.toLocaleDateString()} {date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</time>
-                        <button className="book btn-small btn-primary">Book</button>
+                        <button 
+                          className="book btn-small btn-primary" 
+                          onClick={() => props.bookTime(id, time, index1, index2)}
+                        >Book</button>
                       </li>
                   )})}
                   </ul>

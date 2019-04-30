@@ -13,13 +13,17 @@ function Bookings(props) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>36232</td>
-              <td>John Smith</td>
-              <td>
-                <time dateTime="2019-04-03T10:00:00-04:00">4/3/2019 10:00 am</time>
-              </td>
-            </tr>
+            {props.bookings.map((booking, index) => {
+              let date = new Date(booking[2]);
+              return (
+                <tr key={index}>
+                  <td>{booking[0]}</td>
+                  <td>{booking[1]}</td>
+                  <td>
+                    <time dateTime={booking[2]}>{date.toLocaleDateString()} {date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</time>
+                  </td>
+                </tr>
+              )})}
           </tbody>
         </table>
     </React.Fragment>
