@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require("axios");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
@@ -10,6 +11,16 @@ app.get("/today", (req, res) => {
     res.send({
         today: today()
     });
+});
+
+app.get("/availability", (req, res) => {
+    axios.get("https://www.thinkful.com/api/advisors/availability")
+        .then(({data}) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
 });
 
 function today() {
