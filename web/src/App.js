@@ -28,11 +28,11 @@ class App extends Component {
     if (!this.state.name) {
       alert('Please enter your name before booking.');
     } else {
-      let booking = [id, this.state.name, time];
+      let booking = {id: id, name: this.state.name, time: time};
       axios.post("http://localhost:4433/bookings", {booking: booking});
-      let availabilities = this.state.availabilityTimes;
+      let availabilities = this.state.availabilityTimes.slice();
       availabilities[index1].splice(index2, 1);
-      let bookings = this.state.bookings;
+      let bookings = this.state.bookings.slice();
       bookings.push(booking);
       this.setState({
         availabilityTimes: availabilities,
