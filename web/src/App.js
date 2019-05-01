@@ -31,10 +31,17 @@ class App extends Component {
       let booking = {id: id, name: this.state.name, time: time};
       axios.post("http://localhost:4433/bookings", {booking: booking});
       let availabilities = this.state.availabilityTimes.slice();
+      let ids = this.state.availabilityIds.slice();
       availabilities[index1].splice(index2, 1);
+      // remove empty ids
+      if (availabilities[index1].length === 0) {
+        ids.splice(index1, 1);
+        availabilities.splice(index1, 1);
+      }
       let bookings = this.state.bookings.slice();
       bookings.push(booking);
       this.setState({
+        availabilityIds: ids,
         availabilityTimes: availabilities,
         bookings: bookings
       });
