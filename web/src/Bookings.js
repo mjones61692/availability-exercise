@@ -14,13 +14,13 @@ function Bookings(props) {
           </thead>
           <tbody>
             {props.bookings.map((booking, index) => {
-              let date = new Date(booking.time);
+              let date = new Date(booking.bookingTime);
               return (
                 <tr key={index}>
-                  <td className="booking-advisor-id">{booking.id}</td>
-                  <td className="booking-student-name">{booking.name}</td>
+                  <td className="booking-advisor-id">{booking.bookingId}</td>
+                  <td className="booking-student-name">{booking.studentName}</td>
                   <td>
-                    <time dateTime={booking.time}>{date.toLocaleDateString()} {date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</time>
+                    <time dateTime={booking.bookingTime}>{date.toLocaleDateString()} {date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</time>
                   </td>
                 </tr>
               )})}

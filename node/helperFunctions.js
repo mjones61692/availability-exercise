@@ -20,7 +20,7 @@ module.exports = {
       arr.sort();
       availabilities.push(arr);
     }
-    return {ids: idsArray, times: availabilities};
+    return {availabilityIds: idsArray, availabilityTimes: availabilities};
   },
   today: function() {
     return new Date().toLocaleDateString();

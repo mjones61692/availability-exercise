@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       today: null,
-      name: null,
+      studentName: null,
       availabilityIds: [],
       availabilityTimes: [],
       bookings: []
@@ -20,29 +20,33 @@ class App extends Component {
 
   onNameChange(e) {
     this.setState({
-      name: e.target.value
+      studentName: e.target.value
     });
   }
 
-  bookTime(id, time, index1, index2) {
-    if (!this.state.name) {
+  bookTime(bookingId, bookingTime, index1, index2) {
+    if (!this.state.studentName) {
       alert('Please enter your name before booking.');
     } else {
-      let booking = {id: id, name: this.state.name, time: time};
+      let booking = {
+        bookingId: bookingId, 
+        studentName: this.state.studentName, 
+        bookingTime: bookingTime
+      };
       axios.post("http://localhost:4433/bookings", {booking: booking});
-      let availabilities = this.state.availabilityTimes.slice();
-      let ids = this.state.availabilityIds.slice();
-      availabilities[index1].splice(index2, 1);
+      let availabilityTimes = this.state.availabilityTimes.slice();
+      let availabilityIds = this.state.availabilityIds.slice();
+      availabilityTimes[index1].splice(index2, 1);
       // remove empty ids
-      if (availabilities[index1].length === 0) {
-        ids.splice(index1, 1);
-        availabilities.splice(index1, 1);
+      if (availabilityTimes[index1].length === 0) {
+        availabilityIds.splice(index1, 1);
+        availabilityTimes.splice(index1, 1);
       }
       let bookings = this.state.bookings.slice();
       bookings.push(booking);
       this.setState({
-        availabilityIds: ids,
-        availabilityTimes: availabilities,
+        availabilityIds: availabilityIds,
+        availabilityTimes: availabilityTimes,
         bookings: bookings
       });
     }
@@ -68,8 +72,8 @@ class App extends Component {
       .then((results) => {
         this.setState({
           today: results[0].data.today,
-          availabilityIds: results[1].data.ids,
-          availabilityTimes: results[1].data.times,
+          availabilityIds: results[1].data.availabilityIds,
+          availabilityTimes: results[1].data.availabilityTimes,
           bookings: results[2].data
         });
       })
