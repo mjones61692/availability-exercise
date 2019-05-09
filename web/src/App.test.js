@@ -9,7 +9,11 @@ import BookTime from './BookTime.js';
 
 const mockAvailabilityIds = ["319369"];
 const mockAvailabilityTimes = [["2019-04-30T17:15:00-04:00"]];
-const mockBookings = [["319369","Matt","2019-05-02T15:00:00-04:00"]]
+const mockBookings = [{
+  bookingId: "319369", 
+  studentName: "Matt", 
+  bookingTime: "2019-05-02T15:00:00-04:00"
+}];
 
 configure({adapter: new Adapter()});
 
