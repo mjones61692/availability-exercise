@@ -31,6 +31,17 @@ app.get("/bookings", (req, res) => {
     res.send(booking);
 });
 
+app.get("/closestAvailability", (req, res) => {
+    axios.get("https://www.thinkful.com/api/advisors/availability")
+        .then(({data}) => {
+            res.send(helper.closestAvailability(data, req.params.timeStamp));
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send({error: err});
+        });
+});
+
 app.post("/bookings", (req, res) => {
     booking.push(req.body.booking);
     res.send();

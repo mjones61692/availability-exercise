@@ -1,4 +1,20 @@
 module.exports = {
+  closestAvailability: function(data, timeStamp) {
+    let timeDifference = Infinity;
+    let inputTime = new Date(timeStamp).getTime();
+    let availability;
+    for (let date of Object.keys(data)) {
+      for (let time of Object.keys(data[date])) {
+        let currentTime = new Date(time).getTime();
+        let currentDifference = Math.abs(currentTime - inputTime);
+        if (currentDifference < timeDifference) {
+          timeDifference = currentDifference
+          availability = {availabilityId: data[date][time], availabilityTime: time};
+        }
+      }
+    }
+    return availability;
+  },
   reformatAvailabilities: function(data) {
     // build ids hashtable
     let ids = {};

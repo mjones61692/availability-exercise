@@ -124,6 +124,12 @@ describe("reformat", () => {
     });
 });
 
+describe("closest availability", () => {
+  it("returns the closest availability for a given timeStamp", () => {
+      expect(helperFunctions.closestAvailability(mockData, '2019-04-30T17:00:00-04:00')).toEqual({availabilityId: 319369, availabilityTime: '2019-04-30T17:00:00-04:00'});
+  });
+});
+
 describe("test /today", () => {
     it("returns the correct object for /GET/today", (done) => {
         request(app)
